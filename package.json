@@ -37,5 +37,8 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "config":{
+    "port": "3000"
+  }
 }
