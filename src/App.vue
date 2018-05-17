@@ -1,22 +1,38 @@
 <template>
     <div id="app">
-        <input v-model="username" />
-        <input v-model="password" />
-        <button @click="login()">Login</button>
-        <HelloWorld v-bind:msg={isLoggedIn}></HelloWorld>
+        App Component
+        <div v-if='isLoggedIn === false'>
+            <input v-model="username"/>
+            <input v-model="password"/>
+            <button @click="login()">Login</button>
+        </div>
+        <div v-else>
+            <router-link :to="'/'">App</router-link>
+            <router-link :to="'/home'">Home</router-link>
+            <router-link :to="'/hello'">HelloWorld</router-link>
+            <hr/>
+            <router-view v-bind:msg={isLoggedIn}></router-view>
+        </div>
 
     </div>
 </template>
 
 <script>
     import HelloWorld from './components/HelloWorld.vue'
-    const isLoggedIn = false
-
-
 
     export default {
-        methods: {
-            login(){
+        name: 'app',
+        components: {
+            HelloWorld
+        },
+        data: function () {
+            return {
+                username: '',
+                password: '',
+                isLoggedIn: false
+            }
+        }, methods: {
+            login() {
 
                 //Uncomment the following
 
@@ -35,21 +51,10 @@
 
                 //Remove the following
 
-                if(this.username === 'Justin' && this.password === 'test')
+                if (this.username === 'Justin' && this.password === 'test')
                     this.isLoggedIn = true
                 else
                     this.isLoggedIn = false
-            }
-        },
-        name: 'app',
-        components: {
-            HelloWorld
-        },
-        data: function () {
-            return {
-                username: '',
-                password: '',
-                isLoggedIn: false
             }
         }
     }
